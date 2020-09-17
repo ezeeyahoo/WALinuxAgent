@@ -5,9 +5,6 @@ language: python
 env:
   - NOSEOPTS="--verbose --with-timer" SETUPOPTS=""
   # Add SETUPOPTS="check flake8" to enable flake8 checks
-arch:
-  - amd64
-  - ppc64le
 
 matrix:
   # exclude the default "python" build - we're being specific here...
@@ -31,7 +28,16 @@ matrix:
           NOSEOPTS="--verbose --with-coverage --with-timer --cover-inclusive
           --cover-min-percentage=60 --cover-branches
           --cover-package=azurelinuxagent --cover-xml"
-          SETUPOPTS=""     
+          SETUPOPTS=""
+      #PPC64LE
+    - arch: ppc64le
+      python: 3.8
+      env:
+        - >-
+          NOSEOPTS="--verbose --with-coverage --with-timer --cover-inclusive
+          --cover-min-percentage=60 --cover-branches
+          --cover-package=azurelinuxagent --cover-xml"
+          SETUPOPTS="" 
 
 install:
   - |
